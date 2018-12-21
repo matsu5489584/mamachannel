@@ -19,5 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('topics/create', 'Admin\TopicsController@add')->middleware('auth');
+    Route::get('topics/create', 'Admin\TopicsController@add');
 });
