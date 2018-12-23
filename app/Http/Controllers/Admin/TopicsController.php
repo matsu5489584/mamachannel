@@ -12,4 +12,10 @@ class TopicsController extends Controller
   {
       return view('admin.topics.create');
   }
-}
+  // 以下を追記
+    public function create(Request $request)
+    {
+        // admin/topics/createにリダイレクトする
+        return redirect('admin/topics/create');
+    }
+  }
