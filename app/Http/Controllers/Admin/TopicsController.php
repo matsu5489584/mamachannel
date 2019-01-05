@@ -20,15 +20,15 @@ class TopicsController extends Controller
             // Varidationを行う
             $this->validate($request, Topics::$rules);
 
-            $news = new Topics;
+            $topics = new Topics;
             $form = $request->all();
 
-            // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
+            // フォームから画像が送信されてきたら、保存して、$topics->image_path に画像のパスを保存する
             if (isset($form['image'])) {
               $path = $request->file('image')->store('public/image');
-              $news->image_path = basename($path);
+              $topics->image_path = basename($path);
             } else {
-                $news->image_path = null;
+                $topics->image_path = null;
             }
 
             // フォームから送信されてきた_tokenを削除する
@@ -37,8 +37,8 @@ class TopicsController extends Controller
             unset($form['image']);
 
             // データベースに保存する
-            $news->fill($form);
-            $news->save();
+            $topics->fill($form);
+            $topics->save();
 
             return redirect('admin/topics/create');
     }
