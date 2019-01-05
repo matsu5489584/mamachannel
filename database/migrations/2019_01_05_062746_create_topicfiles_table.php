@@ -15,10 +15,12 @@ class CreateTopicfilesTable extends Migration
     {
         Schema::create('topicfiles', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title'); // タイトルを保存するカラム
+            $table->string('body');  // 本文を保存するカラム
+            $table->string('image_path')->nullable();  // 画像のパスを保存するカラム
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
