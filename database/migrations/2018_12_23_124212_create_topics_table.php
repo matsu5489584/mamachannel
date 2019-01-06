@@ -15,9 +15,8 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title'); // トピックのタイトルを保存するカラム
-            $table->string('body');  // トピックの本文を保存するカラム
-            $table->string('image_path')->nullable();  // 画像のパスを保存するカラム
+            $table->string('title');
+            $table->string('content');
             $table->timestamps();
           });
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopicfilesTable extends Migration
+class CreateTopictagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateTopicfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('topicfiles', function (Blueprint $table) {
+        Schema::create('topictags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('topic_id');
-            $table->string('file');
+            $table->string('name');
             $table->timestamps();
+      
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -27,6 +29,6 @@ class CreateTopicfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topicfiles');
+        Schema::dropIfExists('topictags');
     }
 }
