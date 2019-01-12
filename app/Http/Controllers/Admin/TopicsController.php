@@ -14,7 +14,7 @@ class TopicsController extends Controller
       return view('admin.topics.create');
   }
   // 以下を追記
-    public function create(Request $request)
+    public function update(Request $request)
     {
             // 以下を追記
             // Varidationを行う
