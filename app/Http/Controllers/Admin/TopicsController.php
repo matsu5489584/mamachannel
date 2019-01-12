@@ -19,7 +19,6 @@ class TopicsController extends Controller
             // 以下を追記
             // Varidationを行う
             $this->validate($request, Topics::$rules);
-
             $topics = new Topics;
             $form = $request->all();
 

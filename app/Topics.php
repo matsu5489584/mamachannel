@@ -13,5 +13,8 @@ class topics extends Model
         'title' => 'required',
         'body' => 'required',
     );
+    public function topicfiles()
+    {
+      return $this->hasMany('App\TopicFiles');
 
 }
