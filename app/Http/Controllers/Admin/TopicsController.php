@@ -30,6 +30,8 @@ class TopicsController extends Controller
               $topics->image_path = basename($path);
             } else {
                 $topics->image_path = null;
+                $topicfile->image_path = null;
+
             }
 
             // フォームから送信されてきた_tokenを削除する
