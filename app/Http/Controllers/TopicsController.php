@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\;TopicFiles;
+use App\Topicfiles;
 
-class TopicFilesController extends Controller
+class TopicsController extends Controller
 {
   public function index(Request $request)
   {
       $cond_title = $request->cond_title;
       // $cond_title が空白でない場合は、記事を検索して取得する
       if ($cond_title != '') {
-          $posts = TopicFiles::where('title', $cond_title).orderBy('updated_at', 'desc')->get();
+          $posts = Topicfiles::where('title', $cond_title).orderBy('updated_at', 'desc')->get();
       } else {
-          $posts = TopicFiles::all()->sortByDesc('updated_at');
+          $posts = Topicfiles::all()->sortByDesc('updated_at');
       }
 
       if (count($posts) > 0) {
@@ -26,6 +26,6 @@ class TopicFilesController extends Controller
 
       // news/index.blade.php ファイルを渡している
       // また View テンプレートに headline、 posts、 cond_title という変数を渡している
-      return view('topicfiles.index', ['headline' => $headline, 'posts' => $posts, 'cond_title' => $cond_title]);
+      return view('topics.index', ['headline' => $headline, 'posts' => $posts, 'cond_title' => $cond_title]);
   }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TopicFiles extends Model
+class Topicfiles extends Model
 {
   protected $guarded = array('id');
 
@@ -12,4 +12,10 @@ class TopicFiles extends Model
       'topics_id' => 'required',
       'edited_at' => 'required',
   );
+  public function topicfiles()
+  {
+    return $this->hasMany('App\Topicfiles');
+
+}
+
 }

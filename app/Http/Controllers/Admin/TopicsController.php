@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Topics
+use App\Topics;
 use App\Topicfile;
 use Carbon\Carbon;
 
@@ -37,7 +37,7 @@ class TopicsController extends Controller
             // フォームから送信されてきたimageを削除する
             unset($form['image']);
 
-            $topicfile = new Topics
+            $topicfile = new Topicfiles;
             $topicfile->$topics_id =$topics->id;
             $topicfile->edited_at = Carbon::now();
             $topicfile->save();

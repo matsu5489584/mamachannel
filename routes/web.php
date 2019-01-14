@@ -10,15 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::get('/', 'TopicsController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('topics/create', 'Admin\TopicsController@add')->middleware('auth');
-    Route::post('topics/create', 'Admin\TopicsController@create')->middleware('auth'); # 追記
+    Route::post('topics/create', 'Admin\TopicsController@create')->middleware('auth');
 });

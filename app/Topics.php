@@ -15,6 +15,6 @@ class topics extends Model
     );
     public function topicfiles()
     {
-      return $this->hasMany('App\TopicFiles');
+      return $this->hasMany('App\Topicfiles');
 
 }
