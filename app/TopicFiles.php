@@ -12,10 +12,5 @@ class Topicfiles extends Model
       'topics_id' => 'required',
       'edited_at' => 'required',
   );
-  public function topicfiles()
-  {
-    return $this->hasMany('App\Topicfiles');
-
-}
-
+  
 }

@@ -16,7 +16,7 @@ class TopicsController extends Controller
       return view('admin.topics.create');
   }
   // 以下を追記
-    public function update(Request $request)
+    public function create(Request $request)
     {
             // 以下を追記
             // Varidationを行う
@@ -24,17 +24,6 @@ class TopicsController extends Controller
             $topics = new Topics;
             $form = $request->all();
 
-            // フォームから画像が送信されてきたら、保存して、$topics->image_path に画像のパスを保存する
-            if (isset($form['image'])) {
-              $path = $request->file('image')->store('public/image');
-              $topics->image_path = basename($path);
-            } else {
-                $topics->image_path = null;
-                $topicfile->image_path = null;
-
-            }
-
-            // フォームから送信されてきた_tokenを削除する
             unset($form['_token']);
             // フォームから送信されてきたimageを削除する
             unset($form['image']);
@@ -44,6 +33,15 @@ class TopicsController extends Controller
             $topicfile->edited_at = Carbon::now();
             $topicfile->save();
 
+            // フォームから画像が送信されてきたら、保存して、$topics->image_path に画像のパスを保存する
+            if (isset($form['image'])) {
+              $path = $request->file('image')->store('public/image');
+              $topicfile->file = basename($path);
+            } else {
+                $topicfile->file = null;
+            }
+
+            // フォームから送信されてきた_tokenを削除する
             return redirect('admin/topics/create');
     }
   }
