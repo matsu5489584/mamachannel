@@ -23,25 +23,23 @@ class TopicsController extends Controller
             $this->validate($request, Topics::$rules);
             $topics = new Topics;
             $form = $request->all();
-
-            unset($form['_token']);
-            // フォームから送信されてきたimageを削除する
-            unset($form['image']);
+            $topics->title = $form['title'];
+            $topics->content = $form['content'];
+            $topics->save();
 
             $topicfile = new Topicfiles;
-            $topicfile->$topics_id =$topics->id;
-            $topicfile->edited_at = Carbon::now();
-            $topicfile->save();
+            $topicfile->topic_id =$topics->id;
 
             // フォームから画像が送信されてきたら、保存して、$topics->image_path に画像のパスを保存する
             if (isset($form['image'])) {
               $path = $request->file('image')->store('public/image');
               $topicfile->file = basename($path);
-            } else {
-                $topicfile->file = null;
-            }
+              } else {
+                  $topicfile->file = null;
+              }
+            $topicfile->created_at = Carbon::now();
+            $topicfile->save();
 
-            // フォームから送信されてきた_tokenを削除する
             return redirect('admin/topics/create');
     }
   }
