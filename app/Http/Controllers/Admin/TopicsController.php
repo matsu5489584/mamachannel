@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Topics;
-use App\Topicfile;
+use App\Topicfiles;
 use Carbon\Carbon;
 
 class TopicsController extends Controller
