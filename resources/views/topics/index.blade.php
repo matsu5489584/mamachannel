@@ -10,8 +10,10 @@
                         <div class="col-md-6">
                             <div class="caption mx-auto">
                                 <div class="image">
-                                    @if ($headline->image_path)
-                                        <img src="{{ asset('storage/image/' . $headline->image_path) }}">
+                                    @if ($headline->topicfiles)
+                                        @foreach ($headline->topicfiles as $topicfile)
+                                        <img src="{{ asset('storage/image/' . $topicfile->file) }}">
+                                        @endforeach
                                     @endif
                                 </div>
                                 <div class="title p-2">
@@ -20,7 +22,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p class="body mx-auto">{{ str_limit($headline->body, 650) }}</p>
+                            <p class="body mx-auto">{{ str_limit($headline->content, 650) }}</p>
                         </div>
                     </div>
                 </div>
@@ -29,23 +31,25 @@
         <hr color="#c0c0c0">
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">
-                @foreach($posts as $post)
+                @foreach ($topics as $topic)
                     <div class="post">
                         <div class="row">
                             <div class="text col-md-6">
                                 <div class="date">
-                                    {{ $post->updated_at->format('Y年m月d日') }}
+                                    {{ $topic->updated_at->format('Y年m月d日') }}
                                 </div>
                                 <div class="title">
-                                    {{ str_limit($post->title, 150) }}
+                                    {{ str_limit($topic->title, 150) }}
                                 </div>
                                 <div class="body mt-3">
-                                    {{ str_limit($post->body, 1500) }}
+                                    {{ str_limit($topic->content, 1500) }}
                                 </div>
                             </div>
                             <div class="image col-md-6 text-right mt-4">
-                                @if ($post->image_path)
-                                    <img src="{{ asset('storage/image/' . $post->image_path) }}">
+                                @if ($topic->topicfiles)
+                                    @foreach ($topic->topicfiles as $topicfile)
+                                    <img src="{{ asset('storage/image/' . $topicfile->file) }}">
+                                    @endforeach
                                 @endif
                             </div>
                         </div>

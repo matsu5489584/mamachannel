@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Topics;
 use App\Topicfiles;
 
 class TopicsController extends Controller
@@ -15,17 +16,17 @@ class TopicsController extends Controller
       if ($cond_title != '') {
           $posts = Topicfiles::where('title', $cond_title).orderBy('updated_at', 'desc')->get();
       } else {
-          $posts = Topicfiles::all()->sortByDesc('updated_at');
+          $topics = Topicfiles::all()->sortByDesc('updated_at');
       }
 
-      if (count($posts) > 0) {
-          $headline = $posts->shift();
+      if (count($topics) > 0) {
+          $headline = $topics->shift();
       } else {
           $headline = null;
       }
 
       // news/index.blade.php ファイルを渡している
       // また View テンプレートに headline、 posts、 cond_title という変数を渡している
-      return view('topics.index', ['headline' => $headline, 'posts' => $posts, 'cond_title' => $cond_title]);
+      return view('topics.index', ['headline' => $headline, 'topics' => $topics, 'cond_title' => $cond_title]);
   }
 }
