@@ -14,9 +14,9 @@ class TopicsController extends Controller
       $cond_title = $request->cond_title;
       // $cond_title が空白でない場合は、記事を検索して取得する
       if ($cond_title != '') {
-          $posts = Topicfiles::where('title', $cond_title).orderBy('updated_at', 'desc')->get();
+          $topics = Topics::where('title', $cond_title).orderBy('updated_at', 'desc')->get();
       } else {
-          $topics = Topicfiles::all()->sortByDesc('updated_at');
+          $topics = Topics::all()->sortByDesc('updated_at');
       }
 
       if (count($topics) > 0) {
